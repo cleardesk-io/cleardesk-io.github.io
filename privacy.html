@@ -31,11 +31,15 @@
         }
         
         .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
+            display: inline-block;
             margin-bottom: 0.5rem;
             text-decoration: none;
+        }
+        
+        .logo img {
+            height: 140px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
         
         .breadcrumb {
@@ -103,7 +107,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <a href="index.html" class="logo">Cleardesk</a>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Cleardesk">
+            </a>
             <div class="breadcrumb">Privacy Policy</div>
         </div>
         
@@ -124,7 +130,7 @@
             <p>You have the right to access, modify, or delete any personal information we have collected. You may also opt out of any communications at any time.</p>
             
             <h2>Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us at privacy@cleardesk.ai</p>
+            <p>If you have any questions about this Privacy Policy, please contact us at privacy@cleardesk.io</p>
             
             <a href="index.html" class="back-link">← Back to Home</a>
         </div>

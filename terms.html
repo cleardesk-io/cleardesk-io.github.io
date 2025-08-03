@@ -31,11 +31,15 @@
         }
         
         .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
+            display: inline-block;
             margin-bottom: 0.5rem;
             text-decoration: none;
+        }
+        
+        .logo img {
+            height: 150px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
         
         .breadcrumb {
@@ -103,7 +107,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <a href="index.html" class="logo">Cleardesk</a>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Cleardesk">
+            </a>
             <div class="breadcrumb">Terms of Service</div>
         </div>
         
@@ -130,7 +136,7 @@
             <p>We reserve the right to modify these terms at any time. Continued use of our services constitutes acceptance of any changes.</p>
             
             <h2>Contact Information</h2>
-            <p>For questions regarding these Terms of Service, please contact us at legal@cleardesk.ai</p>
+            <p>For questions regarding these Terms of Service, please contact us at legal@cleardesk.io</p>
             
             <a href="index.html" class="back-link">← Back to Home</a>
         </div>
