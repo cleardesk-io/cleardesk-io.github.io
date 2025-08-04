@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cleardesk - Personal Assistant AI</title>
+    <title>CLEARDESK</title>
+    <link rel="icon" type="image/png" href="plant.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,223 +16,399 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0f0f23;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #ffffff 2px, transparent 0),
+                radial-gradient(circle at 75% 75%, #ffffff 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .hero-section {
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 2rem 1rem;
+            padding: 2rem 0;
         }
-        
+
+        .hero-left {
+            position: relative;
+        }
+
         .logo-container {
-            margin-bottom: 2rem;
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        .logo-container:hover {
+            opacity: 0.8;
+        }
+
+        .logo-container h1 {
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 30px;
+            line-height: 1;
+            margin-left: 0;
+            margin-top: 5px;
         }
         
-        .logo {
-            height: 80px;
-            width: 80px;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+        .logo-container .plant {
+            height: 32px;
+            width: auto;
+            filter: drop-shadow(0 8px 32px rgba(0,0,0,0.3));
         }
-        
-        .brand-name {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            letter-spacing: -1px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+        .plant-tiny {
+            height: 20px;
+            width: auto;
+            filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3));
+            position: relative;
+            top: 1px;
+        }
+
+        .cleardesk {
+            font-weight: 600;
+            color: #fff;
+            margin-left: 5px;
+        }
+
+        .hero-left::before {
+            content: '';
+            position: absolute;
+            top: -2rem;
+            left: -2rem;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+            z-index: -1;
         }
         
         .tagline {
-            font-size: 1.4rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 3rem;
-            font-weight: 300;
-            max-width: 600px;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 900px;
-            margin-bottom: 3rem;
-        }
-
-        .feature-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 12px;
-            padding: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
             text-align: center;
-            transition: transform 0.3s ease, background 0.3s ease;
+            margin: 15rem 0 2rem 0;
+            letter-spacing: -0.02em;
         }
 
-        .feature-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255,255,255,0.15);
+        .tagline em {
+            font-style: normal;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .subtitle-section {
+            text-align: center;
+            margin: 0 0 2rem 0;
         }
 
-        .feature-title {
-            font-size: 1.2rem;
+        .subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-right {
+            position: relative;
+            padding: 2rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .principle-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+        }
+
+        .principle-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .principle-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateX(8px);
+        }
+
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #6366f1, #8b5cf6, #ec4899);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .principle-card:hover::before {
+            opacity: 1;
+        }
+
+        .principle-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .principle-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: white;
+            color: #ffffff;
             margin-bottom: 0.5rem;
         }
 
-        .feature-description {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.8);
+        .principle-description {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
             line-height: 1.5;
         }
-        
+
         .cta-section {
-            background: rgba(255,255,255,0.95);
-            padding: 2.5rem 2rem;
-            border-radius: 16px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
             backdrop-filter: blur(20px);
-            max-width: 500px;
-            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         }
         
-        .cta-section h2 {
+        .cta-title {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #333;
             font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1rem;
         }
         
-        .cta-section p {
+        .cta-description {
             font-size: 1.1rem;
-            color: #666;
+            color: rgba(255,255,255,0.7);
             margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .email-signup {
             display: flex;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto 1.5rem;
         }
         
         .email-signup input {
             flex: 1;
-            padding: 1rem 1.25rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .email-signup input::placeholder {
+            color: rgba(255,255,255,0.4);
         }
 
         .email-signup input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #6366f1;
+            background: rgba(255,255,255,0.08);
         }
         
         .email-signup button {
             padding: 1rem 2rem;
-            background: #667eea;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
         
         .email-signup button:hover {
-            background: #5a67d8;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-note {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
         }
         
         footer {
-            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 3rem 0;
             text-align: center;
-            background: rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
+            margin-top: 4rem;
         }
         
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
+            gap: 3rem;
+            margin-bottom: 2rem;
         }
         
         .footer-links a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.6);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s ease;
-            padding: 0.5rem;
         }
         
         .footer-links a:hover {
-            color: white;
+            color: #ffffff;
         }
         
         .copyright {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.4);
             font-size: 0.85rem;
         }
         
+        @media (max-width: 1024px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-left::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .principle-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
             .logo-container {
-                gap: 1rem;
+                position: static;
+                justify-content: center;
+                margin: 2rem auto 1rem auto;
+                width: 100%;
             }
-            
-            .brand-name {
-                font-size: 2.5rem;
+
+            .hero-section {
+                padding: 0 0 2rem 0;
+                gap: 2rem;
+                margin-top: 1rem;
             }
-            
+
             .logo {
-                height: 60px;
-                width: 60px;
+                height: 50px;
+            }
+            
+            .logo-container h1 {
+                font-size: 24px;
             }
             
             .tagline {
-                font-size: 1.2rem;
-                margin-bottom: 2rem;
+                font-size: 2rem;
+                text-align: center;
+                margin: 2rem 0 2rem 0;
             }
 
-            .features {
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .principle-cards {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-                margin-bottom: 2rem;
+                gap: 1rem;
+                margin: 2rem 0;
             }
 
-            .feature-card {
+            .principle-card {
                 padding: 1.5rem;
             }
-            
+
             .cta-section {
-                padding: 2rem 1.5rem;
-                margin: 0 1rem 2rem;
+                padding: 2rem;
+                margin: 2rem 0;
             }
             
-            .cta-section h2 {
-                font-size: 1.75rem;
+            .cta-title {
+                font-size: 1.5rem;
             }
             
             .email-signup {
@@ -243,124 +423,76 @@
         }
 
         @media (max-width: 480px) {
-            .hero-section {
-                padding: 1rem 0.5rem;
-            }
-
-            .logo-container {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-            }
-
-            .brand-name {
+            .tagline {
                 font-size: 2rem;
             }
 
-            .logo {
-                height: 50px;
-                width: 50px;
-            }
-
-            .tagline {
-                font-size: 1.1rem;
-            }
-
-            .feature-card {
+            .principle-card {
                 padding: 1.25rem;
             }
 
-            .feature-icon {
-                font-size: 2rem;
+            .cta-section {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="hero-section">
-        <div class="logo-container">
-            <svg class="logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                <!-- Desk surface (white with black outline) -->
-                <rect x="10" y="75" width="100" height="12" rx="6" fill="rgba(255,255,255,0.95)" stroke="rgba(0,0,0,0.8)" stroke-width="2"/>
-                
-                <!-- Desk legs -->
-                <rect x="15" y="87" width="8" height="20" rx="4" fill="rgba(180,180,180,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="2"/>
-                <rect x="97" y="87" width="8" height="20" rx="4" fill="rgba(180,180,180,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="2"/>
-                
-                <!-- Monitor outer frame -->
-                <rect x="25" y="35" width="45" height="32" rx="6" fill="rgba(100,120,140,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="2"/>
-                
-                <!-- Monitor inner frame -->
-                <rect x="28" y="38" width="39" height="26" rx="3" fill="rgba(120,140,160,0.9)" stroke="rgba(0,0,0,0.6)" stroke-width="1"/>
-                
-                <!-- Monitor screen -->
-                <rect x="31" y="41" width="33" height="20" rx="2" fill="rgba(255,255,255,0.95)"/>
-                
-                <!-- Monitor face (cute eyes and smile) -->
-                <circle cx="40" cy="48" r="2" fill="rgba(0,0,0,0.8)"/>
-                <circle cx="58" cy="48" r="2" fill="rgba(0,0,0,0.8)"/>
-                <path d="M42 54 Q49 58 56 54" stroke="rgba(0,0,0,0.8)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                
-                <!-- Monitor stand -->
-                <rect x="45" y="67" width="8" height="8" fill="rgba(120,140,160,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="2"/>
-                <rect x="40" y="73" width="18" height="4" rx="2" fill="rgba(120,140,160,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="2"/>
-                
-                <!-- Plant pot -->
-                <path d="M75 65 L85 65 L88 75 L72 75 Z" fill="rgba(200,120,80,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="2"/>
-                <rect x="72" y="63" width="16" height="4" rx="2" fill="rgba(180,100,60,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="2"/>
-                
-                <!-- Plant leaves -->
-                <ellipse cx="77" cy="58" rx="3" ry="8" fill="rgba(60,150,80,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="1.5" transform="rotate(-20 77 58)"/>
-                <ellipse cx="80" cy="55" rx="3" ry="10" fill="rgba(40,130,60,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="1.5" transform="rotate(0 80 55)"/>
-                <ellipse cx="83" cy="58" rx="3" ry="8" fill="rgba(60,150,80,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="1.5" transform="rotate(20 83 58)"/>
-                <ellipse cx="79" cy="60" rx="2" ry="6" fill="rgba(80,170,100,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="1" transform="rotate(-10 79 60)"/>
-                <ellipse cx="81" cy="60" rx="2" ry="6" fill="rgba(80,170,100,0.9)" stroke="rgba(0,0,0,0.8)" stroke-width="1" transform="rotate(10 81 60)"/>
-            </svg>
-            <h1 class="brand-name" style="margin-left: -165px;
-    font-size: 23px;
-    margin-top: 11px;
-    line-height: 1;
-    text-align: left;">CLEAR<br/>DESK</h1>
+    <div class="grain-overlay"></div>
+    
+    <div class="container">
+        <div class="hero-section">
+            <a href="index.html" class="logo-container">
+                <img src="plant.png" alt="CLEARDESK plant" class="plant">
+                <h1>CLEARDESK</h1>
+            </a>
+            
+            <h1 class="tagline"><em>Reduce overload</em>,<br>don't just repackage it.</h1>
         </div>
         
-        <p class="tagline">A personal assistant AI that <em>actually</em> helps you get things done.</p>
+        <div class="subtitle-section">
+            <p class="subtitle">Most AI assistants just wrap your mess in a prettier package. <img src="plant.png" alt="CLEARDESK plant" class="plant-tiny"><span class="cleardesk">CLEARDESK</span> actually <em>lightens your load</em> — surfacing what needs your attention, handling clutter and helping you squash the mental load.</p>
+        </div>
         
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">Smart Focus</h3>
-                <p class="feature-description">Eliminates distractions and helps you concentrate on what matters most</p>
+        <div class="principle-cards">
+            <div class="principle-card">
+                <span class="principle-icon">📧</span>
+                <h3 class="principle-title">Daily digest, not daily guilt</h3>
+                <p class="principle-description">"Here's what I handled" + "Here's one thing you might care about" — no red badges or shamey language. Small wins, momentum, forward movement.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3 class="feature-title">Instant Action</h3>
-                <p class="feature-description">Takes action immediately, not just suggestions - gets work done for you</p>
+            <div class="principle-card">
+                <span class="principle-icon">🧠</span>
+                <h3 class="principle-title">Remember You</h3>
+                <p class="principle-description">Remembers your context: "not job hunting", "on vacation", "ignoring this thread". Learns from what you archive, respond to, or ignore.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🧠</div>
-                <h3 class="feature-title">Context Aware</h3>
-                <p class="feature-description">Understands your workflow and adapts to your unique work style</p>
+            <div class="principle-card">
+                <span class="principle-icon">🔍</span>
+                <h3 class="principle-title">No Black Box</h3>
+                <p class="principle-description">"I drafted this reply because you're not job hunting." Every decision is explainable and correctable.</p>
             </div>
+        </div>
         </div>
         
         <div class="cta-section">
-            <h2>Coming Soon</h2>
-            <p>Be among the first to experience truly helpful AI assistance.</p>
+            <h2 class="cta-title">Your proactive personal assistant</h2>
+            <p class="cta-description"><img src="plant.png" alt="CLEARDESK plant" class="plant-tiny"><span class="cleardesk">CLEARDESK</span> takes initiative so you don't have to. Real value means offloading work, not wrapping it in a dashboard.</p>
             
             <div class="email-signup">
-                <input type="email" placeholder="Enter your email for early access" aria-label="Email address">
-                <button type="submit">Join Waitlist</button>
+                <input type="email" placeholder="Enter your email" aria-label="Email address">
+                <button type="submit">Get Early Access</button>
             </div>
         </div>
     </div>
     
     <footer>
-        <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-        </div>
-        <div class="copyright">
-            © 2025 Cleardesk. All rights reserved.
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <div class="copyright">
+                © 2025 CLEARDESK. All rights reserved.
+            </div>
         </div>
     </footer>
 </body>
