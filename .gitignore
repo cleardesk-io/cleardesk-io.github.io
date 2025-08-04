@@ -1,0 +1,4 @@
+stuff/*
+.claude/*
+.node-version
+.DS_Store
