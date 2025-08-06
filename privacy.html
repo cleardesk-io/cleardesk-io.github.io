@@ -225,8 +225,55 @@
             <h2>Information We Collect</h2>
             <p>At Cleardesk, we are committed to protecting your privacy. We collect only the information necessary to provide you with the best possible AI assistant experience.</p>
             
+            <h2>Google User Data Collection and Access</h2>
+            <p>When you connect your Google account to Cleardesk, our application collects and accesses the following Google user data:</p>
+            
+            <p><strong>Data We Collect from Google:</strong></p>
+            <ul style="color: rgba(255,255,255,0.7); margin-left: 20px; margin-bottom: 1rem;">
+                <li>Email messages (including content, metadata, attachments, and headers)</li>
+                <li>Email threads and conversations</li>
+                <li>Email labels and categories</li>
+                <li>Draft messages</li>
+                <li>Email settings and filters</li>
+            </ul>
+            
+            <p><strong>Gmail API Scope (https://www.googleapis.com/auth/gmail.modify):</strong> This restricted scope allows Cleardesk to perform all read/write operations on your Gmail account except immediate, permanent deletion of threads and messages. Specifically, we use this access to:</p>
+            <ul style="color: rgba(255,255,255,0.7); margin-left: 20px; margin-bottom: 1rem;">
+                <li>Read, search, and filter your email messages</li>
+                <li>Compose, modify, and send emails on your behalf</li>
+                <li>Create and modify drafts</li>
+                <li>Apply labels and organize your inbox</li>
+                <li>Mark messages as read/unread, important, or starred</li>
+                <li>Move messages to trash (but not permanently delete)</li>
+                <li>Respond to real-time Gmail events through webhooks (new emails, status changes, user actions)</li>
+                <li>Provide proactive assistance based on email activity</li>
+            </ul>
+            
+            <p><strong>How We Use Google User Data:</strong></p>
+            <ul style="color: rgba(255,255,255,0.7); margin-left: 20px; margin-bottom: 1rem;">
+                <li>To provide AI-powered email management and assistance features</li>
+                <li>To respond to your explicit instructions for email operations</li>
+                <li>To process webhook notifications for real-time email updates</li>
+                <li>To improve user-facing features within our application</li>
+            </ul>
+            
+            <p><strong>Data Storage and Processing:</strong> <strong>We do NOT store the actual contents of your emails.</strong> When we access your email data through the Gmail API, it is retrieved securely and used only once in real-time to analyze and generate insights for better categorization and understanding of required actions. We only store:</p>
+            <ul style="color: rgba(255,255,255,0.7); margin-left: 20px; margin-bottom: 1rem;">
+                <li>Email metadata (sender, recipient, timestamps, subject lines, message IDs)</li>
+                <li>AI-generated insights and categorizations derived from email analysis</li>
+                <li>Action items and task summaries we create based on email content</li>
+                <li>Labels and organizational structures</li>
+            </ul>
+            <p>The actual email content, body text, and attachments are never stored in our systems and are only accessed transiently during processing.</p>
+            
+            <p><strong>Data Sharing and Disclosure:</strong> We do NOT sell, rent, or share your Google user data with third parties. Your email data is only accessed by our systems to provide the services you've requested. We may disclose data only when required by law or with your explicit consent.</p>
+            
+            <p><strong>Data Retention and Deletion:</strong> Since we don't store email contents, there is no email content to delete. We only retain email metadata and our generated insights as long as necessary to provide our services. You can revoke access at any time through your Google Account settings, which will immediately stop our access to your Gmail data. You may also request deletion of any stored metadata and insights by contacting us.</p>
+            
+            <p><strong>Data Protection:</strong> We implement industry-standard security measures including encryption in transit and at rest, secure authentication protocols, regular security audits, and compliance with Google's API Services User Data Policy. Access to Google user data is limited to the minimum necessary to provide our services.</p>
+            
             <h2>How We Use Your Information</h2>
-            <p>Any information collected is used solely to improve our AI assistant services and provide you with personalized assistance. We do not sell, rent, or share your personal information with third parties without your explicit consent.</p>
+            <p>Any information collected, including data accessed through Google APIs and webhook events, is used solely to provide and improve our AI assistant services and deliver personalized assistance as requested by you. We do not sell, rent, or share your personal information or Google user data with third parties without your explicit consent. Your Google account data is accessed only when you actively use features that require it or when responding to Gmail events you've authorized, and we follow Google's API Services User Data Policy in handling this information.</p>
             
             <h2>Data Security</h2>
             <p>We implement industry-standard security measures to protect your data. All communications are encrypted, and we regularly review our security practices to ensure your information remains safe.</p>
